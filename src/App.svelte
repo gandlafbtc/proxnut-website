@@ -3,6 +3,7 @@
   import Footer from "./lib/Footer.svelte";
 
   import Header from "./lib/Header.svelte";
+    import HowItWorks from "./lib/HowItWorks.svelte";
 </script>
 
 <Header />
@@ -17,41 +18,17 @@
   <div class="pt-20 pb-10">
     <p class="font-bold text-lg">How it works</p>
   </div>
-  <div
-    class="w-full grid grid-cols-1 lg:grid-cols-3 gap-3 items-center justify-center p-2"
-  >
-    <div class="w-full flex justify-center">
-      <div
-        class="w-80 h-80 gap-2 flex flex-col bg-secondary items-center justify-start p-2 rounded-lg shadow-lg backdrop-filter backdrop-blur-sm top-0 bg-opacity-30"
-      >
-      <p class="text-primary font-bold text-lg">1. Install proxy as request handler</p>
-      <p class="text-primary">
-        Put proxnut as an intermediate hop between clients and you API. 
-      </p>
-      <img src="/glassed.png" alt="" class="w-32">
-    </div>
-    </div>
-    <div class="w-full flex justify-center">
-      <div
-        class="w-80 h-80 gap-2 flex flex-col bg-secondary items-center justify-start p-2 rounded-lg shadow-lg backdrop-filter backdrop-blur-sm top-0 bg-opacity-30"
-      >
-      <p class="text-primary font-bold text-lg">2. Link to API</p> 
-      <p class="text-primary">
-        Choose which endpoints should be proxied by proxnut. 
-      </p>
-      </div>
-    </div>
-    <div class="w-full flex justify-center">
-      <div
-      class="w-80 h-80 gap-2 flex flex-col bg-secondary items-center justify-start p-2 rounded-lg shadow-lg backdrop-filter backdrop-blur-sm top-0 bg-opacity-30"
-    >
-      <p class="text-primary font-bold text-lg">3. Configure route settings</p>
-      <p class="text-primary">
-        Specify how much access to each route should cost. 
-      </p>
-      </div>
-    </div>
-  </div>
+  <HowItWorks></HowItWorks>
+
+</div>
+<div class="flex py-20 flex-col gap-10 bg-gradient-to-b from-secondary to-white">
+  <p class="text-center font-bold text-lg">How to Install</p>
+  <p class="text-center">
+    Proxnut is open source. To leverage proxnut for your own infrastructure follow these steps.
+  </p>
+<div>
+coming soon
+</div>
 </div>
 
 <Footer />
