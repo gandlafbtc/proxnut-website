@@ -169,5 +169,560 @@ These are the web resources (like APIs, content, etc.) that owners wish to prote
   
 - **Firewall & Intrusion Detection**: Advanced firewall settings and intrusion detection mechanisms are in place to detect and prevent malicious activities.
 
+
+
+
 ---
 
+## **3. Features and Functionalities**
+This section provides a comprehensive overview of ProxNut's features and functionalities, detailing how each feature works and the benefits it offers to users and resource owners.
+
+---
+
+### **3.1 Ecash Wallet Integration**
+
+**Overview**:  
+ProxNut's integration with the Cashu ecash wallet is central to its operation. This integration allows users to transact using tokens, making the process of accessing or monetizing web resources seamless.
+
+**Key Features**:
+
+- **Token-Based Transactions**: Users can spend tokens from their Cashu ecash wallet to access protected resources. Resource owners can set a token price for their content.
+  
+- **Balance Verification**: Before granting access to a resource, ProxNut verifies if the user has enough balance in their Cashu wallet.
+  
+- **Transaction History**: Users can view their transaction histories, including spent tokens, accessed resources, and timestamps.
+
+---
+
+### **3.2 Resource Protection Mechanism**
+
+**Overview**:  
+ProxNut offers a robust mechanism to protect web resources, ensuring that only authorized users with valid tokens can access them.
+
+**Key Features**:
+
+- **Access Control**: Resource owners can define who can access their content, either by setting a token price or by whitelisting specific users.
+  
+- **Dynamic Pricing**: Owners have the flexibility to set dynamic token prices based on demand, content value, or other factors.
+  
+- **Request Filtering**: ProxNut can filter out unauthorized or malicious requests, ensuring that only legitimate users access the content.
+
+---
+
+### **3.3 Open-Source Contribution**
+
+**Overview**:  
+ProxNut is an open-source project, inviting developers worldwide to contribute, enhance, and adapt the system to various use cases.
+
+**Key Features**:
+
+- **Codebase Access**: Developers can access the entire ProxNut codebase, allowing them to understand, modify, and enhance the system.
+  
+- **Community Support**: A vibrant community of developers supports ProxNut, offering assistance, sharing insights, and collaborating on new features.
+  
+- **Contribution Guidelines**: Clear guidelines are provided for developers wishing to contribute to the project, ensuring code quality and consistency.
+
+---
+
+### **3.4 Additional Features**
+
+- **No-Account Approach**: ProxNut's design eliminates the need for traditional account setups, simplifying the user experience.
+  
+- **Fast Transactions**: Leveraging the Lightning Network's capabilities ensures quick and efficient transactions.
+  
+- **Customizable**: ProxNut is designed to be adaptable, allowing resource owners to customize settings, appearance, and functionalities to suit their needs.
+
+
+
+
+---
+
+## **4. Detailed Installation Guide**
+This section provides a thorough guide on installing ProxNut, catering to both Docker users and those who prefer a manual setup. It ensures that users can get ProxNut up and running with minimal hassle.
+
+---
+
+### **4.1 Prerequisites**
+
+Before installing ProxNut, ensure you have the following:
+
+- **Operating System**: A Linux-based OS is recommended for optimal performance and compatibility.
+  
+- **Docker & Docker Compose**: ProxNut can be easily deployed using Docker. Ensure you have Docker and Docker Compose installed.
+  
+- **Git**: To clone the ProxNut repository and fetch updates.
+  
+- **Cashu ecash Wallet**: Ensure you have a Cashu ecash wallet set up for token-based transactions.
+
+---
+
+### **4.2 Docker Compose Installation**
+
+**Step-by-Step Guide**:
+
+1. **Clone the Repository**:  
+   ```bash
+   git clone https://github.com/gandlafbtc/proxnut.git
+   ```
+
+2. **Navigate to the Directory**:  
+   ```bash
+   cd proxnut
+   ```
+
+3. **Run Docker Compose**:  
+   ```bash
+   docker-compose up -d
+   ```
+
+4. **Verify Installation**:  
+   Access the ProxNut interface via your browser to ensure it's running.
+
+---
+
+### **4.3 Manual Setup and Configuration**
+
+For those who prefer a manual setup:
+
+1. **Clone the Repository**:  
+   ```bash
+   git clone https://github.com/gandlafbtc/proxnut.git
+   ```
+
+2. **Navigate to the Directory**:  
+   ```bash
+   cd proxnut
+   ```
+
+3. **Install Dependencies**:  
+   Depending on the language and framework ProxNut is built with, you'll need to install the necessary dependencies. For instance, if it's a Node.js application:
+   ```bash
+   npm install
+   ```
+
+4. **Configuration**:  
+   Modify the configuration files to set up host mapping, fees, mints, and other settings as per your requirements.
+
+5. **Start the Server**:  
+   Run the server using the appropriate command, e.g., for a Node.js application:
+   ```bash
+   npm start
+   ```
+
+6. **Verify Installation**:  
+   Access the ProxNut interface via your browser to ensure it's running.
+
+---
+
+### **4.4 Post-Installation Steps**
+
+- **Set Up Resources**: Define the web resources you want to protect or monetize using ProxNut.
+  
+- **Configure Wallet**: Link your Cashu ecash wallet to ProxNut for token-based transactions.
+  
+- **Test the Setup**: Try accessing a protected resource to ensure the token verification and transaction processes work seamlessly.
+
+---
+
+
+
+---
+
+## **5. Request Flow and Operations**
+This section offers a comprehensive understanding of how requests are processed within ProxNut, detailing the steps from initiation to response delivery. It also touches on advanced operations and monitoring capabilities that enhance the system's efficiency and user experience.
+
+---
+
+### **5.1 Request Lifecycle**
+
+Understanding the lifecycle of a request in ProxNut is crucial for both users and developers. Here's a step-by-step breakdown:
+
+1. **Initiation**: A user sends a request to access a protected resource. This request includes a token from their Cashu ecash wallet.
+
+2. **Token Extraction**: ProxNut extracts the token from the request header, specifically from the `X-Cashu` header.
+
+3. **Token Verification**: The backend server communicates with the Cashu ecash wallet system to verify the token's validity and sufficiency.
+
+4. **Resource Routing**: If the token is valid, ProxNut routes the request to the appropriate resource based on the host and route mapping configuration.
+
+5. **Response Generation**: The protected resource processes the request and generates a response.
+
+6. **Response Delivery**: ProxNut delivers the resource's response back to the user.
+
+---
+
+### **5.2 Handling of Valid and Invalid Requests**
+
+**Valid Requests**:
+
+- If the token is valid and has sufficient balance, the user is granted access to the requested resource.
+  
+- The amount corresponding to the resource's token price is deducted from the user's Cashu wallet.
+
+**Invalid Requests**:
+
+- If the token is invalid or there's an insufficient balance, ProxNut returns an error message to the user.
+  
+- Common error messages include "Invalid Token", "Insufficient Balance", or "Resource Not Found".
+
+---
+
+### **5.3 Advanced Operations**
+
+**Dynamic Pricing**: Depending on demand, server load, or other factors, ProxNut can dynamically adjust the token price for accessing resources.
+
+**Rate Limiting**: To ensure fair usage and prevent abuse, ProxNut can limit the number of requests a user can make within a specific timeframe.
+
+**Caching**: For frequently accessed resources, ProxNut can cache responses to improve speed and reduce server load.
+
+---
+
+### **5.4 Monitoring and Analytics**
+
+ProxNut provides tools and interfaces for monitoring:
+
+- **Request Logs**: Detailed logs of all incoming requests, including timestamps, IP addresses, requested resources, and token details.
+  
+- **Analytics Dashboard**: A visual interface showing metrics like total requests, successful requests, failed requests, and resource popularity.
+
+---
+
+
+---
+
+## **6. Configuration Details**
+This section provides a deep dive into the configuration options available in ProxNut. It ensures that users can tailor the system to their specific needs, from routing and fee settings to mint management and advanced options.
+
+---
+
+### **6.1 Host & Route Mapping Configuration**
+
+**Overview**:  
+ProxNut allows for detailed configuration of how requests are routed based on the host and specific routes. This ensures that different resources can have different token prices and access controls.
+
+**Steps**:
+
+1. **Define Hosts**: List down the hosts (domains or IP addresses) that ProxNut should handle.
+
+2. **Set Route Fees**: For each host, you can define specific routes and set token prices for accessing them. For instance, `/premium-content` might have a higher token price than `/basic-content`.
+
+3. **Cumulative Fees**: Both host and route fees are cumulative. If a host has a fee of 5 tokens and a specific route under that host has a fee of 3 tokens, accessing that route would cost a user 8 tokens.
+
+---
+
+### **6.2 Fee Setting and Calculation**
+
+**Overview**:  
+ProxNut provides flexibility in setting fees for accessing resources. This section details how fees are set and calculated.
+
+**Steps**:
+
+1. **Global Fee**: Set a global fee that applies to all resources unless overridden by specific host or route fees.
+
+2. **Dynamic Pricing**: Depending on factors like demand, time of day, or server load, ProxNut can adjust fees dynamically.
+
+3. **Fee Calculation**: When a request comes in, ProxNut calculates the total fee based on global, host, and route settings. The user's Cashu wallet is then checked to ensure they have sufficient balance.
+
+---
+
+### **6.3 Mint Management and Configuration**
+
+**Overview**:  
+Mints are crucial for the operation of ProxNut, especially in the context of the Cashu ecash wallet. This section details how mints are managed and configured.
+
+**Steps**:
+
+1. **Add Mints**: Add the mints you operate or trust. This is essential for token verification and transactions.
+
+2. **Specify Allowed Mints**: For added security, you can specify which mints are allowed to transact with your ProxNut instance.
+
+3. **Mint Verification**: When a request comes in with a token, ProxNut verifies the token's validity with the specified mints.
+
+---
+
+### **6.4 Advanced Configuration Options**
+
+**Custom Headers**: You can define custom headers for requests and responses, enhancing flexibility and integration capabilities.
+
+**Logging Level**: Adjust the level of logging for ProxNut operations, ranging from basic (errors only) to verbose (detailed logs of all activities).
+
+**Cache Settings**: Configure caching mechanisms to optimize response times and reduce server load for frequently accessed resources.
+
+---
+
+
+
+---
+
+## **7. Usage and Examples**
+This section offers practical examples and scenarios to help users understand how to use ProxNut effectively. It covers both basic and advanced usage scenarios, ensuring a comprehensive understanding of the system's capabilities.
+
+---
+
+### **7.1 Running ProxNut with Docker Compose**
+
+**Overview**:  
+For users who prefer containerized solutions, ProxNut can be easily deployed using Docker Compose.
+
+**Steps**:
+
+1. **Navigate to the ProxNut Directory**:  
+   ```bash
+   cd path/to/proxnut
+   ```
+
+2. **Start ProxNut**:  
+   ```bash
+   docker-compose up -d
+   ```
+
+3. **Access ProxNut**:  
+   Open a web browser and navigate to the ProxNut interface to ensure it's running.
+
+---
+
+### **7.2 Manual Stack Initialization**
+
+**Overview**:  
+For those who prefer a hands-on approach, ProxNut can be initialized manually.
+
+**Steps**:
+
+1. **Navigate to the ProxNut Directory**:  
+   ```bash
+   cd path/to/proxnut
+   ```
+
+2. **Start the Server**:  
+   Depending on the language and framework ProxNut is built with, start the server. For instance, if it's a Node.js application:
+   ```bash
+   npm start
+   ```
+
+3. **Verify the Setup**:  
+   Access the ProxNut interface via your browser to ensure it's running.
+
+---
+
+### **7.3 Demo Backend: Unprotected vs. Protected Resources**
+
+**Overview**:  
+This section demonstrates how ProxNut protects resources and how users can access them using tokens.
+
+**Steps**:
+
+1. **Access Unprotected Resource**:  
+   Navigate to an unprotected resource URL. You should be able to access it without any tokens.
+
+2. **Access Protected Resource without Token**:  
+   Try accessing a protected resource without providing a token. You should receive an error message.
+
+3. **Access Protected Resource with Token**:  
+   Attach a valid token from your Cashu ecash wallet to the request header and try accessing the protected resource again. You should be granted access.
+
+---
+
+### **7.4 Advanced Usage Scenarios**
+
+**Dynamic Pricing**:  
+Demonstrate how ProxNut can adjust token prices dynamically based on factors like demand or server load.
+
+**Rate Limiting**:  
+Show how ProxNut can limit the number of requests a user can make within a specific timeframe, ensuring fair usage.
+
+**Custom Headers**:  
+Provide examples of how users can define custom headers for requests and responses, enhancing integration capabilities.
+
+---
+
+
+
+---
+
+## **8. Troubleshooting and FAQs**
+This section provides users with solutions to common problems, answers to frequently asked questions, and guidance on reporting issues and seeking support. It's designed to help users quickly resolve any challenges they might face while using ProxNut.
+
+---
+
+### **8.1 Common Issues and Solutions**
+
+**Issue**: ProxNut server doesn't start.  
+**Solution**: Ensure all dependencies are installed and that there are no port conflicts. Check the server logs for specific error messages.
+
+**Issue**: Token verification fails despite having a valid token.  
+**Solution**: Ensure the Cashu ecash wallet integration is correctly set up and that the mint is recognized by ProxNut.
+
+**Issue**: Dynamic pricing isn't adjusting as expected.  
+**Solution**: Check the configuration settings related to dynamic pricing and ensure they're correctly set.
+
+---
+
+### **8.2 Frequently Asked Questions (FAQs)**
+
+**Q**: Can I use ProxNut without the Cashu ecash wallet?  
+**A**: While ProxNut is designed to work seamlessly with the Cashu ecash wallet, it can be adapted to work with other systems. However, this might require additional configuration and development.
+
+**Q**: How do I set different token prices for different resources?  
+**A**: ProxNut allows you to define token prices at both the host and route levels. You can set specific prices for different routes under a host, allowing for granular pricing control.
+
+**Q**: Is ProxNut secure?  
+**A**: Absolutely! ProxNut employs various security measures, including token encryption, rate limiting, and advanced firewall settings. Additionally, the integration with the Cashu ecash wallet ensures secure transactions.
+
+**Q**: How can I contribute to ProxNut's development?  
+**A**: ProxNut is an open-source project. You can access its codebase on GitHub, make enhancements, and submit pull requests. We appreciate community contributions!
+
+---
+
+### **8.3 Reporting Issues and Getting Support**
+
+If you encounter any issues not covered in this section or need further assistance, please:
+
+1. **Check the GitHub Repository**: Visit the [ProxNut GitHub repository](https://github.com/gandlafbtc/proxnut) and search for similar issues reported by other users.
+  
+2. **Report a New Issue**: If your issue hasn't been reported, create a new issue on GitHub with a detailed description, steps to reproduce, and any error messages or logs.
+  
+3. **Community Support**: Join the ProxNut community on platforms like Discord or Slack to discuss issues, share solutions, and collaborate with other users and developers.
+
+---
+
+
+
+
+---
+
+## **9. Contribution and Community**
+This section emphasizes the importance of community in the development and growth of ProxNut. It provides guidelines for contributing, engaging with the community, and ensuring a positive and collaborative environment for all members.
+
+---
+
+### **9.1 Contributing to ProxNut**
+
+**Overview**:  
+ProxNut is an open-source project, and we welcome contributions from developers worldwide. Whether you're fixing bugs, adding new features, or improving documentation, your efforts are appreciated.
+
+**Steps**:
+
+1. **Fork the Repository**:  
+   Start by forking the [ProxNut GitHub repository](https://github.com/gandlafbtc/proxnut).
+
+2. **Clone Your Fork**:  
+   ```bash
+   git clone https://github.com/your-username/proxnut.git
+   ```
+
+3. **Create a New Branch**:  
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+4. **Make Your Changes**:  
+   Implement your feature or fix and commit your changes.
+
+5. **Push to Your Fork**:  
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+6. **Submit a Pull Request**:  
+   Go to the ProxNut repository and create a new pull request from your branch.
+
+---
+
+### **9.2 Community Guidelines**
+
+**Respect and Inclusivity**:  
+We strive to create a community where everyone feels welcome and respected. Discrimination, harassment, or any form of negativity is not tolerated.
+
+**Open Collaboration**:  
+Share your ideas, provide feedback, and collaborate openly. Collective wisdom drives ProxNut's success.
+
+**Stay Updated**:  
+Join community meetings, read announcements, and participate in discussions to stay updated with the latest developments.
+
+---
+
+### **9.3 Joining the Community**
+
+**Platforms**:
+
+- **GitHub**: Engage in technical discussions, report issues, and contribute to the codebase on [ProxNut's GitHub repository](https://github.com/gandlafbtc/proxnut).
+  
+- **Discord/Slack**: Join our chat platforms for real-time discussions, support, and collaboration with other community members.
+  
+- **Forums and Blogs**: Participate in in-depth discussions, share your experiences, and learn from others on community forums and blogs.
+
+---
+
+### **9.4 Recognizing Contributors**
+
+We value every contribution, no matter how big or small. Regular contributors are recognized in our documentation, on our website, and during community events. Your efforts help make ProxNut better for everyone!
+
+---
+
+
+
+
+
+---
+
+## **10. Future Roadmap and Enhancements**
+This section provides insights into the future direction of ProxNut, detailing upcoming features, community-requested enhancements, and the long-term vision. It also guides users on how to stay updated with the latest developments and roadmap changes.
+
+---
+
+### **10.1 Upcoming Features**
+
+**Overview**:  
+ProxNut is continuously evolving, with a roadmap that aims to introduce new features and improvements based on community feedback and technological advancements.
+
+**Planned Features**:
+
+- **Enhanced Security Protocols**: Implementing advanced encryption and security measures to ensure data integrity and protection.
+  
+- **Scalability Improvements**: Optimizations to handle a larger number of simultaneous requests without compromising performance.
+  
+- **Integration with Additional Wallets**: Beyond Cashu ecash wallet, plans to integrate with other popular digital wallets for more extensive user reach.
+
+---
+
+### **10.2 Community-Requested Enhancements**
+
+**Overview**:  
+We value community feedback and have earmarked several enhancements based on user suggestions.
+
+**Enhancements**:
+
+- **User-Friendly Dashboard**: A more intuitive and feature-rich dashboard for monitoring and management.
+  
+- **Advanced Rate Limiting**: More granular control over request rate limiting based on user types or content categories.
+  
+- **Custom Token Pricing Algorithms**: Allowing users to implement their algorithms for dynamic token pricing based on various factors.
+
+---
+
+### **10.3 Long-Term Vision**
+
+**Overview**:  
+ProxNut's long-term vision is to become the go-to solution for web resource monetization and protection, bridging the gap between content creators and consumers seamlessly.
+
+**Goals**:
+
+- **Global Adoption**: Making ProxNut a universally accepted solution for web resource monetization.
+  
+- **Continuous Innovation**: Staying at the forefront of technological advancements to offer cutting-edge features and solutions.
+  
+- **Empowering Communities**: Ensuring that ProxNut remains open-source and community-driven, empowering users worldwide to shape its future.
+
+---
+
+### **10.4 How to Stay Updated**
+
+To stay updated with the latest developments, enhancements, and roadmap updates:
+
+- **Subscribe to our Newsletter**: Get monthly updates, feature announcements, and more delivered to your inbox.
+  
+- **Follow us on Social Media**: Regular updates, news, and announcements on platforms like Twitter, LinkedIn, and Facebook.
+  
+- **Join Community Meetings**: Participate in periodic community meetings where we discuss the roadmap, take feedback, and share the latest developments.
+
+---
