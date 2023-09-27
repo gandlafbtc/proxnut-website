@@ -1,0 +1,173 @@
+
+---
+
+# **PROXNUT Technical Documentation**
+
+This table of contents provides a structured and detailed roadmap for the technical documentation. Each section is designed to deep dive into the technical aspects of ProxNut, ensuring that developers and users have a comprehensive understanding of the system, its implementation, and usage.
+
+---
+
+## **Table of Contents**
+
+1. **Introduction**
+   - Overview of ProxNut
+   - Purpose and Use Cases
+
+2. **System Architecture**
+   - High-Level Architecture Diagram
+   - Component Descriptions
+
+3. **Features and Functionalities**
+   - Ecash Wallet Integration
+   - Resource Protection Mechanism
+   - Open-Source Contribution
+
+4. **Detailed Installation Guide**
+   - Prerequisites
+   - Docker Compose Installation
+   - Manual Setup and Configuration
+
+5. **Request Flow and Operations**
+   - Request Lifecycle
+   - Token Verification Process
+   - Handling of Valid and Invalid Requests
+
+6. **Configuration Details**
+   - Host & Route Mapping Configuration
+   - Fee Setting and Calculation
+   - Mint Management and Configuration
+
+7. **Usage and Examples**
+   - Running ProxNut with Docker Compose
+   - Manual Stack Initialization
+   - Demo Backend: Unprotected vs. Protected Resources
+
+8. **Frontend Integration**
+   - Building the Example Frontend
+   - Integrating Custom Frontends
+   - Wallet Operations and User Interactions
+
+9. **Codebase Overview**
+   - Directory Structure
+   - Key Modules and Their Functions
+   - External Libraries and Dependencies
+
+10. **Contributing to ProxNut**
+   - Setting Up the Development Environment
+   - Contribution Guidelines
+   - Pull Request and Code Review Process
+
+11. **License and Legal**
+   - MIT License Details
+   - Contribution and Usage Rights
+
+12. **Support, Feedback, and Community**
+   - Getting Support and Reporting Issues
+   - Joining the ProxNut Community
+   - Further Resources and Reading
+
+---
+
+
+
+## **1. Introduction**
+This expanded introduction provides a comprehensive understanding of ProxNut's purpose, its primary use cases, and the benefits it offers to both resource providers and consumers.
+
+---
+
+### **1.1 Overview of ProxNut**
+
+**ProxNut** is an advanced proxy solution designed to protect or monetize web resources. By leveraging the capabilities of the Cashu ecash wallet, ProxNut offers a seamless mechanism for users to access protected resources using tokens, eliminating the traditional complexities associated with account setups and payment gateways.
+
+---
+
+### **1.2 Purpose and Use Cases**
+
+**Purpose**:  
+The primary purpose of ProxNut is to provide a bridge between web resources and users, ensuring that resource owners can monetize their content while maintaining security and ease of access for consumers.
+
+**Use Cases**:
+
+1. **Web Resource Monetization**:  
+   - **Scenario**: Content creators or API providers who wish to monetize their resources without the hassle of setting up payment gateways or user accounts.
+   - **Solution**: ProxNut allows these providers to set a token price for their content. Users can then access this content by spending tokens from their Cashu ecash wallet.
+
+2. **Access Control for Web Resources**:  
+   - **Scenario**: Organizations or individuals who want to restrict access to specific web resources, ensuring only authorized users can access them.
+   - **Solution**: With ProxNut, resource owners can protect their content, granting access only to users who provide a valid Cashu token.
+
+3. **Seamless Web Transactions**:  
+   - **Scenario**: E-commerce platforms or online service providers looking for a streamlined transaction process without the need for user registration or account management.
+   - **Solution**: ProxNut's integration with the Cashu ecash wallet allows for quick and secure transactions, enhancing the user experience.
+
+---
+
+### **1.3 Benefits of ProxNut**
+
+- **Simplicity**: No need for traditional account setups. Users can access or monetize content directly using tokens.
+  
+- **Security**: ProxNut ensures that web resources are protected, and transactions are secure, leveraging the robustness of the Cashu ecash wallet and the underlying technology.
+  
+- **Flexibility**: Resource owners have the freedom to set their token prices, decide access levels, and customize their monetization strategies.
+
+
+
+
+---
+
+## **2. System Architecture**
+This section provides a detailed overview of ProxNut's system architecture, explaining the roles of different components, the flow of data, and the security measures in place.
+---
+
+### **2.1 High-Level Architecture Diagram**
+
+At this point, typically, a visual representation or diagram of the system's architecture would be provided. This diagram would show how different components of ProxNut interact with each other, external systems, and the user.
+
+---
+
+### **2.2 Component Descriptions**
+**Frontend Interface**:  
+This is the user-facing component where users can request access to protected resources, manage their Cashu ecash wallet, and view transaction histories.
+
+**Backend Server**:  
+Handles all the business logic, including:
+- Token verification against the Cashu ecash wallet.
+- Routing requests to the appropriate resources.
+- Managing access controls and monetization settings.
+
+**Cashu ecash Wallet Integration**:  
+This component facilitates the seamless transaction process. It verifies tokens, manages balances, and ensures secure transactions.
+
+**Database**:  
+Stores configuration settings, user transaction histories, resource access logs, and other essential data.
+
+**API Gateway**:  
+Serves as an entry point for all incoming requests. It routes requests to the appropriate backend services and handles rate limiting, caching, and other optimizations.
+
+**Protected Resources**:  
+These are the web resources (like APIs, content, etc.) that owners wish to protect or monetize. ProxNut ensures that access to these resources is controlled based on the provided tokens.
+
+---
+
+### **2.3 Data Flow**
+
+1. **User Request**: A user sends a request to access a protected resource, attaching a Cashu token to the request header.
+  
+2. **Token Verification**: The backend server verifies the token's validity with the Cashu ecash wallet integration component.
+  
+3. **Resource Access**: If the token is valid and has sufficient balance, the user is granted access to the requested resource. Otherwise, an error or denial message is returned.
+  
+4. **Transaction Logging**: All transactions, both successful and failed, are logged in the database for auditing and analytics purposes.
+
+---
+
+### **2.4 Security Measures**
+
+- **Token Encryption**: All tokens are encrypted during transmission to ensure data privacy and security.
+  
+- **Rate Limiting**: To prevent abuse and ensure fair usage, rate limiting is implemented at the API gateway level.
+  
+- **Firewall & Intrusion Detection**: Advanced firewall settings and intrusion detection mechanisms are in place to detect and prevent malicious activities.
+
+---
+
