@@ -1708,6 +1708,7 @@ input[type=range]::-moz-focus-outer{
     }
 }
 @media (min-width:768px){
+    nav.chxxe {visibility: hidden !important; display: none !important; clear: both; }
     .cxlpo{
         order:0
     }
