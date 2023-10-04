@@ -1660,7 +1660,8 @@ input[type=range]::-moz-focus-outer{
     --tw-text-opacity: 1;
     color:rgb(209 213 219/var(--tw-text-opacity))
 }
-@media (min-width:640px){
+@media (max-width:432px){
+    nav.chxxe {visibility: hidden !important; display: none !important; }
     .csh49{
         grid-column:span 12/span 12
     }
@@ -1707,7 +1708,8 @@ input[type=range]::-moz-focus-outer{
         padding-right:1.5rem
     }
 }
-@media (min-width:768px){
+@media (min-width:678px){
+    nav.chxxe ul li.co4ic {visibility: hidden !important; display: none !important; }
     .cxlpo{
         order:0
     }
